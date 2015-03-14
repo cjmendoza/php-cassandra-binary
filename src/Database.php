@@ -90,6 +90,14 @@ class Database {
 		return true;
 	}
 
+    /**
+     * Test connection to database
+     * @return bool
+     */
+    public function isConnected() {
+        return $this->connection->isConnected();
+    }
+
 	/**
 	 * Disconnect to database
 	 * @return bool
