@@ -15,25 +15,25 @@ class Database {
 	/**
 	 * @var Cluster
 	 */
-	private $cluster;
+    protected $cluster;
 
 	/**
 	 * @var Connection
 	 */
-	private $connection;
+	protected $connection;
 
 	/**
 	 * Connection options
 	 * @var array
 	 */
-	private $options = [
+	protected $options = [
 		'CQL_VERSION' => '3.0.0'
 	];
 
 	/**
 	 * @var string
 	 */
-	private $keyspace;
+	protected $keyspace;
 
 	/**
 	 * @var string
@@ -89,14 +89,6 @@ class Database {
 
 		return true;
 	}
-
-    /**
-     * Test connection to database
-     * @return bool
-     */
-    public function isConnected() {
-        return $this->connection->isConnected();
-    }
 
 	/**
 	 * Disconnect to database

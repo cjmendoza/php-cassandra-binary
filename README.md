@@ -2,9 +2,9 @@ PHP library for Cassandra
 =========================
 
 [![Build Status](https://travis-ci.org/LarsFronius/php-cassandra-binary.svg?branch=master)](https://travis-ci.org/LarsFronius/php-cassandra-binary)
-<a href="https://codeclimate.com/github/evseevnn/php-cassandra-binary"><img src="https://codeclimate.com/github/evseevnn/php-cassandra-binary.png" /></a>
-<a href="https://scrutinizer-ci.com/g/evseevnn/php-cassandra-binary/"><img src="https://scrutinizer-ci.com/g/evseevnn/php-cassandra-binary/badges/quality-score.png?b=master" /></a>
-<a href="https://scrutinizer-ci.com/g/evseevnn/php-cassandra-binary/"><img src="https://scrutinizer-ci.com/g/evseevnn/php-cassandra-binary/badges/build.png?b=master" /></a>
+<a href="https://codeclimate.com/github/cjmendoza/php-cassandra-binary"><img src="https://codeclimate.com/github/cjmendoza/php-cassandra-binary.png" /></a>
+<a href="https://scrutinizer-ci.com/g/cjmendoza/php-cassandra-binary/"><img src="https://scrutinizer-ci.com/g/cjmendoza/php-cassandra-binary/badges/quality-score.png?b=master" /></a>
+<a href="https://scrutinizer-ci.com/g/cjmendoza/php-cassandra-binary/"><img src="https://scrutinizer-ci.com/g/cjmendoza/php-cassandra-binary/badges/build.png?b=master" /></a>
 
 
 Cassandra client library for PHP, using the native binary protocol.
@@ -31,7 +31,7 @@ Append dependency into composer.json
 	...
 	"require": {
 		...
-		"evseevnn/php-cassandra-binary": "dev-master"
+		"cjmendoza/php-cassandra-binary": "dev-master"
 	}
 	...
 ```
@@ -50,7 +50,7 @@ $nodes = [
 ];
 
 // Connect to database.
-$database = new evseevnn\Cassandra\Database($nodes, 'my_keyspace');
+$database = new cjmendoza\Cassandra\Database($nodes, 'my_keyspace');
 $database->connect();
 
 // Run query.
