@@ -15,7 +15,7 @@ class Cassandra{
      * @param array $nodes
      * @param array $options
      */
-    public function connect(array $nodes, array $options = []) {
+    public static function connect(array $nodes, array $options = []) {
         return new Driver($nodes, '', $options);
     }
 

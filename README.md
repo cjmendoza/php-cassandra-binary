@@ -33,6 +33,8 @@ Append dependency into composer.json
 ```php
 <?php
 
+use cjmendoza/Cassandra/Cassandra
+
 $nodes = [
 	'127.0.0.1',
 	'192.168.0.2:8882' => [
@@ -42,7 +44,7 @@ $nodes = [
 ];
 
 // Connect to database.
-$cluster = cjmendoza\Cassandra\Cassandra->connect($nodes);
+$cluster = Cassandra::connect($nodes);
 $db_driver = $cluster->connect(<keyspace>);
 
 // Run query.
