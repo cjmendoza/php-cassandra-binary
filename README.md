@@ -9,14 +9,6 @@ PHP library for Cassandra
 
 Cassandra client library for PHP, using the native binary protocol.
 
-## Roadmap for version 0.2.0
-* UUID generation
-* timestamp only with microsecond
-* using v2 protocol
-* speedup
-* the ability to specify the settings (setup default consistency level and more)
-* more fixes
-
 ## Known issues
 * decimal and timestamps have bugs especially in collections (map,set,list)
 * connection handling e.g. timeouts
@@ -36,7 +28,7 @@ Append dependency into composer.json
 	...
 ```
 
-## Base Using
+## Example use
 
 ```php
 <?php
@@ -50,11 +42,11 @@ $nodes = [
 ];
 
 // Connect to database.
-$database = new cjmendoza\Cassandra\Database($nodes, 'my_keyspace');
-$database->connect();
+$cluster = cjmendoza\Cassandra\Cassandra->connect($nodes);
+$db_driver = $cluster->connect(<keyspace>);
 
 // Run query.
-$users = $database->query('SELECT * FROM "users" WHERE "id" = :id', ['id' => 'c5420d81-499e-4c9c-ac0c-fa6ba3ebc2bc']);
+$users = $db_driver->execute('SELECT * FROM "users" WHERE "id" = :id', ['id' => 'c5420d81-499e-4c9c-ac0c-fa6ba3ebc2bc']);
 
 var_dump($users);
 /*
@@ -69,19 +61,19 @@ var_dump($users);
 */
 
 // Keyspace can be changed at runtime
-$database->setKeyspace('my_other_keyspace');
+$db_driver->setKeyspace('my_other_keyspace');
 // Get from other keyspace
-$urlsFromFacebook = $database->query('SELECT * FROM "urls" WHERE "host" = :host', ['host' => 'facebook.com']);
+$urlsFromFacebook = $db_driver->execute('SELECT * FROM "urls" WHERE "host" = :host', ['host' => 'facebook.com']);
 
 ```
 
 ## Using transaction
 
 ```php
-	$database->beginBatch();
+	$db_driver->beginBatch();
 	// all INSERT, UPDATE, DELETE query append into batch query stack for execution after applyBatch
 	$uuid = $database->query('SELECT uuid() as "uuid" FROM system.schema_keyspaces LIMIT 1;')[0]['uuid'];
-	$database->query(
+	$db_driver->execute(
 			'INSERT INTO "users" ("id", "name", "email") VALUES (:id, :name, :email);',
 			[
 				'id' => $uuid,
@@ -90,13 +82,13 @@ $urlsFromFacebook = $database->query('SELECT * FROM "urls" WHERE "host" = :host'
 			]
 		);
 
-	$database->query(
+	$db_driver->execute(
 			'DELETE FROM "users" WHERE "email" = :email;',
 			[
 				'email' => 'durov@vk.com'
 			]
 		);
-	$result = $database->applyBatch();
+	$result = $db_driver->applyBatch();
 ```
 
 ## Supported datatypes

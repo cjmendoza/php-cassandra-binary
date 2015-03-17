@@ -1,6 +1,6 @@
 {
 	"name": "cjmendoza/php-cassandra-binary",
-	"description": "PHP library for Cassandra database via a binary protocol",
+	"description": "PHP CQL library for Cassandra database via a binary protocol",
 	"minimum-stability": "stable",
 	"license": "MIT",
 	"authors": [
